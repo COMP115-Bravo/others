@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .options {
+            margin-bottom: 15px;
+        }
+        .option {
+            margin-right: 10px;
+        }
+        #submit-btn {
+            display: block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Interactive Quiz</h2>
+        <div class="question" id="question1">
+            <p>1. What is the capital of France?</p>
+            <div class="options">
+                <label class="option"><input type="radio" name="q1" value="Paris"> Paris</label>
+                <label class="option"><input type="radio" name="q1" value="London"> London</label>
+                <label class="option"><input type="radio" name="q1" value="Berlin"> Berlin</label>
+                <label class="option"><input type="radio" name="q1" value="Rome"> Rome</label>
+            </div>
+        </div>
+        <div class="question" id="question2">
+            <p>2. Which country has the largest area in the world?</p>
+            <div class="options">
+                <label class="option"><input type="radio" name="q2" value="China"> China</label>
+                <label class="option"><input type="radio" name="q2" value="USA"> USA</label>
+                <label class="option"><input type="radio" name="q2" value="Canada"> Canada</label>
+                <label class="option"><input type="radio" name="q2" value="Russia"> Russia</label>
+            </div>
+        </div>
+        <div class="question" id="question3">
+            <p>3. Which mountain is the highest in the world?</p>
+            <div class="options">
+                <label class="option"><input type="radio" name="q3" value="Mount Everest"> Mount Everest</label>
+                <label class="option"><input type="radio" name="q3" value="K2"> K2</label>
+                <label class="option"><input type="radio" name="q3" value="Kangchenjunga"> Kangchenjunga</label>
+                <label class="option"><input type="radio" name="q3" value="Lhotse"> Lhotse</label>
+            </div>
+        </div>
+
+        <button id="submit-btn">Submit</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        // Define quiz answers
+        const answers = {
+            q1: 'Paris',
+            q2: 'Russia',
+            q3: 'Mount Everest',
+        };
+
+        // Initialize score
+        let score = 0;
+
+        // Function to check answers and display result
+        function checkAnswers() {
+            let resultHTML = '';
+            for (let i = 1; i <= Object.keys(answers).length; i++) {
+                const questionId = 'question' + i;
+                const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedAnswer) {
+                    if (selectedAnswer.value === answers[`q${i}`]) { 
+                        resultHTML += `<p>Question ${i}: Correct!</p>`;
+                    } else {
+                        resultHTML += `<p>Question ${i}: Incorrect! The correct answer is ${answers[`q${i}`]}.</p>`;
+                    }
+                } else {
+                    resultHTML += `<p>Question ${i}: You didn't select an answer.</p>`;
+                }
+            }
+            document.getElementById('result').innerHTML = `<h3>Result:</h3>${resultHTML}<p>Total Score: ${score}</p>`;
+        }
+
+    </script>
+</body>
+</html>
