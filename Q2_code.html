@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            position: relative;
+        }
+        td:hover {
+            background-color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <h2>Multiplication Table</h2>
+    <table id="multiplication-table"></table>
+
+    <script>
+        // Function to dynamically generate multiplication table
+        function generateMultiplicationTable() {
+            // Get reference to the table element
+            const table = document.getElementById('multiplication-table');
+
+            // Loop through rows and columns to generate table cells
+            for (let i = 1; i <= 10; i++) {
+                // Create a new table row
+                const row = document.createElement('tr');
+
+                for (let j = 1; j <= 10; j++) {
+                    // Create a new table cell
+                    const cell = document.createElement('td');
+                    // Calculate the multiplication value and set it as cell content
+                    cell.textContent = i * j;
+
+                    // Create tooltip content
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = `${i} * ${j}`;
+
+                    // Append tooltip to cell
+                    cell.appendChild(tooltip);
+
+                    // Append the cell to the row
+                    row.appendChild(cell);
+                }
+
+                // Append the row to the table
+                table.appendChild(row);
+            }
+        }
+
+        // Call the function when the webpage loads
+        window.onload = generateMultiplicationTable;
+    </script>
+</body>
+</html>
